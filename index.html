@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Prediction</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="theme-sunny">
+  <div class="container">
+    <!-- Top Navbar with 3 Pages -->
+    <nav class="navbar">
+      <div class="brand">
+        <span class="logo">🌌</span>
+        <div>
+          <h1>Weather Prediction</h1>
+          <p class="muted">Dark Sky Forecast &amp; Alerts</p>
+        </div>
+      </div>
+
+      <div class="nav-links">
+        <button class="nav-btn active" onclick="openPage('homePage', this)">Dashboard</button>
+        <button class="nav-btn" onclick="openPage('forecastPage', this)">5-Day Forecast</button>
+        <button class="nav-btn" onclick="openPage('alertsPage', this)">Alerts &amp; Guide</button>
+      </div>
+    </nav>
+
+    <!-- City Search Bar & Quick Cities -->
+    <section class="search-panel">
+      <form id="searchForm" class="search-box">
+        <input id="cityInput" type="text" placeholder="Search city (e.g. Delhi, Tokyo)..." required />
+        <button type="submit" class="btn-primary">Search</button>
+        <button type="button" id="unitBtn" class="btn-dark">°C</button>
+      </form>
+
+      <div class="quick-cities">
+        <button class="chip" data-city="New Delhi">New Delhi</button>
+        <button class="chip" data-city="Mumbai">Mumbai</button>
+        <button class="chip" data-city="London">London</button>
+        <button class="chip" data-city="Tokyo">Tokyo</button>
+        <button class="chip" data-city="New York">New York</button>
+        <button id="locBtn" class="chip chip-glow">📍 My Location</button>
+      </div>
+      <p id="statusMsg" class="status"></p>
+    </section>
+
+    <!-- PAGE 1: Two-Column Dashboard -->
+    <section id="homePage" class="page active">
+      <div class="two-columns">
+        <!-- Column 1: Weather Prediction -->
+        <article class="card">
+          <div class="card-head">
+            <div>
+              <span class="tag">WEATHER PREDICTION</span>
+              <h2 id="cityName">--</h2>
+              <p id="dateText" class="muted">--</p>
+            </div>
+            <div id="weatherIcon" class="big-icon">☀️</div>
+          </div>
+
+          <div class="temp-row">
+            <span id="tempValue" class="temp">--°</span>
+            <div>
+              <p id="conditionText" class="condition">--</p>
+              <p id="feelsLike" class="muted">Feels like --</p>
+            </div>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><span>💧 Humidity</span><strong id="humidity">--%</strong></div>
+            <div class="stat"><span>💨 Wind</span><strong id="wind">-- km/h</strong></div>
+            <div class="stat"><span>🌧️ Rain</span><strong id="rainChance">--%</strong></div>
+          </div>
+
+          <div class="mini-next">
+            <span>🔮 Tomorrow's Outlook:</span>
+            <strong id="tomorrowText">--</strong>
+          </div>
+        </article>
+
+        <!-- Column 2: Alert Column & Suggestions -->
+        <article class="card">
+          <span class="tag">LIVE ALERTS &amp; ACTIONS</span>
+
+          <div id="alertBox" class="alert-box level-safe">
+            <span id="alertBadge" class="alert-badge">STATUS</span>
+            <h3 id="alertTitle">--</h3>
+            <p id="alertDesc">--</p>
+          </div>
+
+          <!-- Specific Alert Cards -->
+          <div class="specific-alerts">
+            <div class="mini-alert"><span>🚗 Travel Alert</span><strong id="travelAlert">--</strong></div>
+            <div class="mini-alert"><span>👕 Comfort Alert</span><strong id="comfortAlert">--</strong></div>
+          </div>
+
+          <!-- What You Can Do -->
+          <div class="suggestions">
+            <h3>💡 What You Can Do</h3>
+            <ul id="suggestionList"></ul>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- PAGE 2: 5-Day Forecast -->
+    <section id="forecastPage" class="page">
+      <div class="card">
+        <span class="tag">EXTENDED OUTLOOK</span>
+        <h2>📅 5-Day Weather Prediction — <span id="forecastCity">--</span></h2>
+        <div id="forecastGrid" class="forecast-grid"></div>
+      </div>
+    </section>
+
+    <!-- PAGE 3: Alerts & Safety Guide -->
+    <section id="alertsPage" class="page">
+      <div class="card">
+        <span class="tag">SAFETY CENTER</span>
+        <h2>🚨 Alert Levels &amp; Safety Guide</h2>
+        <p class="muted" id="guideSummary">Current city alert summary will appear here.</p>
+
+        <div class="guide-grid">
+          <div class="guide-card border-green">
+            <h3>🟢 All Clear (Safe)</h3>
+            <p>Normal temperatures and low wind. Ideal for walks, travel, and outdoor sports.</p>
+          </div>
+          <div class="guide-card border-amber">
+            <h3>🟡 Advisory (Rain / Cold / Wind)</h3>
+            <p>Carry an umbrella, wear warm layers, and drive carefully on wet or windy roads.</p>
+          </div>
+          <div class="guide-card border-red">
+            <h3>🔴 Severe Warning (Heat / Storm)</h3>
+            <p>Stay indoors, stay hydrated during heatwaves, and unplug devices during storms.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
